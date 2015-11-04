@@ -15,6 +15,9 @@
     FunHouseWindowController *windowController;         // standard (typical) window controller
     FunHouseWindowController *fullScreenController;     // (full screen) window controller
     CGColorSpaceRef colorspace;
+    BOOL hasWindowDimensions;
+    float wdWidth;
+    float wdHeight;
 }
 
 - (EffectStack *)effectStack;
@@ -23,4 +26,7 @@
 - (void)undo;
 - (void)redo;
 - (void)reconfigureWindowToSize:(NSSize)size andPath:(NSString *)path;
+- (BOOL)hasWindowDimensions;
+- (float)windowWidth;
+- (float)windowHeight;
 @end

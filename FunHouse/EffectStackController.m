@@ -143,7 +143,7 @@
 // when we see an update, check for the flag that tells us to reconfigure our effect stack inspection
 - (void)windowDidUpdate:(NSNotification *)notification
 {
-    int i, count;
+   int i, count;
     CIFilter *filter;
     NSWindow *w;
     NSString *type, *string;

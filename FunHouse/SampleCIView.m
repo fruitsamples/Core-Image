@@ -187,7 +187,7 @@
 	}
 	else if (_image != nil)
 	{
-	    cgImage = [_context createCGImage:_image fromRect:ir];
+	    cgImage = [_context createCGImage:_image fromRect:ir format:kCIFormatRGBA16 colorSpace:nil];
 
 	    if (cgImage != NULL)
 	    {

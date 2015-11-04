@@ -599,8 +599,8 @@ static void format_floating_point_number(float v, int before, int after, char *s
     }
 }
 
-// recompute the text image from the test storage (which in turn comes from the live text view!)
-// then associate that image with the text layer in gthe effect stack
+// recompute the text image from the text storage (which in turn comes from the live text view!)
+// then associate that image with the text layer in the effect stack
 - (void)recomputeTextImage:(NSTextStorage *)ts
 {
     NSBitmapImageRep *bitmapimagerep;
@@ -625,7 +625,6 @@ static void format_floating_point_number(float v, int before, int after, char *s
     bitmapimagerep = [[[NSBitmapImageRep alloc]
       initWithFocusedViewRect:NSMakeRect(0.0, 0.0, sz.width, (float)sz.height)] autorelease];
     [image unlockFocus];
-    // this still seems to fail
     im = [[[CIImage alloc] initWithBitmapImageRep:[bitmapimagerep retain]] autorelease];
     [dict setValue:im forKey:@"image"];
 }
@@ -1471,7 +1470,7 @@ NSString *unInterCap(NSString *s)
     NSString *l;
     NSMutableString *s2;
     
-    s2 = [s mutableCopyWithZone:nil];
+    s2 = [s mutableCopy];
     l = [s2 lowercaseString];
     // "StriationStrength" => "Striation Strength"
     change = NO;
@@ -1488,7 +1487,8 @@ NSString *unInterCap(NSString *s)
         }
     }
     if (change)
-        return [s2 copy];
+	s = [[s2 copy] autorelease];
+    [s2 release];
     return s;
 }
 
@@ -1508,10 +1508,10 @@ NSString *unInterCap(NSString *s)
     
     // determine if we need to ellipsize
     columnwidth = width - 5;
-    stringwidth = [font widthOfString:label];
+	stringwidth = (int)[label sizeWithAttributes:[NSDictionary dictionaryWithObject:font forKey:NSFontNameAttribute]].width;
     if (stringwidth <= columnwidth)
         return label;
-    label2 = [label mutableCopyWithZone:nil];
+    label2 = [label mutableCopy];
     first = YES;
     while (stringwidth > columnwidth)
     {
@@ -1521,9 +1521,11 @@ NSString *unInterCap(NSString *s)
         else
             [label2 replaceCharactersInRange:NSMakeRange(length-4, 4) withString:@"..."]; // must include ellipsis now
         first = NO;
-        stringwidth = [font widthOfString:label2];
+		stringwidth = (int)[label2 sizeWithAttributes:[NSDictionary dictionaryWithObject:font forKey:NSFontNameAttribute]].width;
     }
-    return [label2 copy];
+    label = [[label2 copy] autorelease];
+    [label2 release];
+    return label;
 }
 
 // add a slider, hooked up to a given filter instance, connected to the filter's parameter with the given key
@@ -2405,6 +2407,7 @@ NSString *unInterCap(NSString *s)
     // retain the text storage from the text view in the dictionary
     ts = [textView textStorage];
     [d setValue:ts forKey:@"textStorage"];
+    [self recomputeTextImage:ts];
 }
 
 // add a scale slider for a text layer

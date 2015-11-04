@@ -1,0 +1,15 @@
+{
+    IBClasses = (
+        {
+            ACTIONS = {createFilterGenerator = id; loadGenerator = id; saveGenerator = id; }; 
+            CLASS = AppController; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {filterPanel = NSPanel; testView = SampleCIView; }; 
+            SUPERCLASS = NSObject; 
+        }, 
+        {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
+        {CLASS = NSObject; LANGUAGE = ObjC; }, 
+        {CLASS = SampleCIView; LANGUAGE = ObjC; SUPERCLASS = NSOpenGLView; }
+    ); 
+    IBVersion = 1; 
+}

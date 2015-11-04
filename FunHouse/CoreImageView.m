@@ -443,7 +443,7 @@
 	{
 	    CGImageRef cgImage;
 
-	    cgImage = [context createCGImage:im fromRect:cgr];
+	    cgImage = [context createCGImage:im fromRect:cgr format:kCIFormatRGBA16 colorSpace:nil];
 
 	    if (cgImage != NULL)
 	    {
@@ -686,7 +686,7 @@
     // save a string so we have an easier time evaluating the undo string at mouse up
     if (parmMode == pmImageOffset)
         savedActionName = @"Image Move";
-    else if (parmMode == pmImageOffset)
+    else if (parmMode == pmTextOffset)
         savedActionName = @"Text Move";
     else if (parmMode!= pmNone)
         savedActionName = [[self actionNameForFilter:f key:parmKey] retain];

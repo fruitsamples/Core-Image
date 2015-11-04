@@ -76,7 +76,7 @@
 // this gets called when a typical window is loaded from the FunHouseWindow.nib file
 - (void)windowDidLoad
 {
-    float xwiden, ywiden, xscale, yscale, scale;
+    float xwiden, ywiden, xscale, yscale, scale, width, height;
     CIImage *im;
     CGSize imagesize;
     NSSize screensize;
@@ -88,6 +88,17 @@
     [self setUpCoreImageView];
     // this is required for mouseEntered and mouseExited events
     [[self window] makeFirstResponder:coreImageView];
+    if ([fhdoc hasWindowDimensions])
+    {
+        width = [fhdoc windowWidth];
+        height = [fhdoc windowHeight];
+        scale = 1.0;
+        [[self window] setContentSize:NSMakeSize(width, height)];
+        // set up view transform using scale
+        [coreImageView setViewTransformScale:scale];
+        [coreImageView setViewTransformOffsetX:0.0 andY:0.0];
+        return;
+    }
     // resize window to match file size
     im = [[fhdoc effectStack] baseImage];
     if (im != nil)

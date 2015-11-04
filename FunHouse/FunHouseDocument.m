@@ -36,6 +36,7 @@
         // allocate the effect stack for a document here
         effectStack = [[EffectStack alloc] init];
         fullScreen = NO;
+        hasWindowDimensions = NO;
     }
     return self;
 }
@@ -365,6 +366,9 @@
     filedict = [NSMutableDictionary dictionaryWithCapacity:10];
     layerarray = [NSMutableArray arrayWithCapacity:count];
     [filedict setValue:layerarray forKey:@"layers"];
+    NSRect fr = [[windowController window] frame];
+    [filedict setValue:[NSNumber numberWithFloat:fr.size.width] forKey:@"windowWidth"];
+    [filedict setValue:[NSNumber numberWithFloat:fr.size.height] forKey:@"windowHeight"];
     lastImageNumber = 0;
     // enumerate the document's effect stack layers
     for (i = 0; i < count; i++)
@@ -533,13 +537,20 @@
     
     // use Core Image to convert the data - it uses the ImageIO library
     // get color space of image data
-    ref = CGImageSourceCreateWithData((CFDataRef)data, nil);
-    image = CGImageSourceCreateImageAtIndex(ref, 0, nil);
+    if ([aType isEqualToString:@"OpenEXR File"])
+        ref = CGImageSourceCreateWithURL((CFURLRef)[self fileURL], nil);
+    else
+        ref = CGImageSourceCreateWithData((CFDataRef)data, nil);
+    image = CGImageSourceCreateImageAtIndex(ref, 0, (CFDictionaryRef)[NSDictionary dictionaryWithObjectsAndKeys:(id)kCFBooleanTrue,
+      (NSString *)kCGImageSourceShouldAllowFloat, nil]);
     colorspace = CGImageGetColorSpace(image);
     CFRetain(colorspace);
-    CFRelease(image);
     CFRelease(ref);
-    im = [CIImage imageWithData:data];
+    if ([aType isEqualToString:@"OpenEXR File"])
+        im = [CIImage imageWithCGImage:image];
+    else
+        im = [CIImage imageWithData:data];
+    CFRelease(image);
     [effectStack setBaseImage:im withFilename:[[self fileName] lastPathComponent] andImageFilePath:[self fileName]];
     return YES;
 }
@@ -583,6 +594,7 @@
     NSArray *layers, *inputKeys;
     NSString *type, *file, *classname, *error, *key, *classstring, *path;
     NSPoint offset;
+    NSNumber *num;
     CIImage *im;
     CIFilter *filter;
     NSPropertyListFormat format;
@@ -605,6 +617,15 @@
         return NO;
         }
     // now unpack file dictionary
+    num = [filedict valueForKey:@"windowWidth"];
+    if (num == nil)
+        hasWindowDimensions = NO;
+    else
+    {
+        hasWindowDimensions = YES;
+        wdWidth = [num floatValue];
+        wdHeight = [[filedict valueForKey:@"windowHeight"] floatValue];
+    }
     layers = [filedict valueForKey:@"layers"];
     count = [layers count];
     for (i = 0; i < count; i++)
@@ -825,6 +846,21 @@ return YES;
 {
     [self setFileURL:[NSURL fileURLWithPath:path]];
     [windowController configureToSize:size andFilename:[path lastPathComponent]];
+}
+
+- (BOOL)hasWindowDimensions
+{
+    return hasWindowDimensions;
+}
+
+- (float)windowWidth
+{
+    return wdWidth;
+}
+
+- (float)windowHeight
+{
+    return wdHeight;
 }
 
 @end

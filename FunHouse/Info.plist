@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
 	<key>CFBundleDevelopmentRegion</key>
@@ -23,145 +23,34 @@
 			<string>FunHouseDocument</string>
 		</dict>
 		<dict>
-			<key>CFBundleTypeExtensions</key>
-			<array>
-				<string>jpeg</string>
-				<string>jpg</string>
-			</array>
 			<key>CFBundleTypeName</key>
-			<string>JPEG File</string>
-			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
-			<key>LSTypeIsPackage</key>
-			<false/>
-			<key>NSDocumentClass</key>
-			<string>FunHouseDocument</string>
-		</dict>
-		<dict>
-			<key>CFBundleTypeExtensions</key>
-			<array>
-				<string>tiff</string>
-				<string>tif</string>
-			</array>
-			<key>CFBundleTypeIconFile</key>
-			<string></string>
-			<key>CFBundleTypeName</key>
-			<string>TIFF File</string>
-			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
-			<key>LSTypeIsPackage</key>
-			<false/>
-			<key>NSDocumentClass</key>
-			<string>FunHouseDocument</string>
-		</dict>
-		<dict>
-			<key>CFBundleTypeExtensions</key>
-			<array>
-				<string>png</string>
-			</array>
-			<key>CFBundleTypeName</key>
-			<string>PNG File</string>
+			<string>Image</string>
 			<key>CFBundleTypeRole</key>
 			<string>Viewer</string>
-			<key>LSTypeIsPackage</key>
-			<false/>
-			<key>NSDocumentClass</key>
-			<string>FunHouseDocument</string>
-		</dict>
-		<dict>
-			<key>CFBundleTypeExtensions</key>
+			<key>LSItemContentTypes</key>
 			<array>
-				<string>crw</string>
-				<string>cr2</string>
+				<string>public.jpeg</string>
+				<string>com.compuserve.gif</string>
+				<string>public.png</string>
+				<string>public.jpeg-2000</string>
+				<string>public.tiff</string>
+				<string>com.adobe.photoshop-image</string>
+				<string>com.adobe.pdf</string>
+				<string>com.adobe.illustrator.ai-image</string>
+				<string>com.microsoft.ico</string>
+				<string>com.microsoft.bmp</string>
+				<string>com.apple.icns</string>
+				<string>public.xbitmap-image</string>
+				<string>com.microsoft.cur</string>
+				<string>com.apple.pict</string>
+				<string>com.truevision.tga-image</string>
+				<string>com.sgi.sgi-image</string>
+				<string>com.apple.quicktime-image</string>
+				<string>com.kodak.flashpix-image</string>
+				<string>com.apple.macpaint-image</string>
+				<string>public.radiance</string>
+				<string>public.camera-raw-image</string>
 			</array>
-			<key>CFBundleTypeName</key>
-			<string>Canon RAW File</string>
-			<key>CFBundleTypeRole</key>
-			<string>Viewer</string>
-			<key>LSTypeIsPackage</key>
-			<false/>
-			<key>NSDocumentClass</key>
-			<string>FunHouseDocument</string>
-		</dict>
-		<dict>
-			<key>CFBundleTypeExtensions</key>
-			<array>
-				<string>cr2</string>
-			</array>
-			<key>CFBundleTypeName</key>
-			<string>Canon RAW File</string>
-			<key>CFBundleTypeRole</key>
-			<string>Viewer</string>
-			<key>LSTypeIsPackage</key>
-			<false/>
-			<key>NSDocumentClass</key>
-			<string>FunHouseDocument</string>
-		</dict>
-		<dict>
-			<key>CFBundleTypeExtensions</key>
-			<array>
-				<string>raf</string>
-			</array>
-			<key>CFBundleTypeName</key>
-			<string>Fuji RAW File</string>
-			<key>CFBundleTypeRole</key>
-			<string>Viewer</string>
-			<key>LSTypeIsPackage</key>
-			<false/>
-			<key>NSDocumentClass</key>
-			<string>FunHouseDocument</string>
-		</dict>
-		<dict>
-			<key>CFBundleTypeExtensions</key>
-			<array>
-				<string>mrw</string>
-			</array>
-			<key>CFBundleTypeName</key>
-			<string>Minolta RAW File</string>
-			<key>CFBundleTypeRole</key>
-			<string>Viewer</string>
-			<key>LSTypeIsPackage</key>
-			<false/>
-			<key>NSDocumentClass</key>
-			<string>FunHouseDocument</string>
-		</dict>
-		<dict>
-			<key>CFBundleTypeExtensions</key>
-			<array>
-				<string>nef</string>
-			</array>
-			<key>CFBundleTypeName</key>
-			<string>Nikon RAW File</string>
-			<key>CFBundleTypeRole</key>
-			<string>Viewer</string>
-			<key>LSTypeIsPackage</key>
-			<false/>
-			<key>NSDocumentClass</key>
-			<string>FunHouseDocument</string>
-		</dict>
-		<dict>
-			<key>CFBundleTypeExtensions</key>
-			<array>
-				<string>srf</string>
-			</array>
-			<key>CFBundleTypeName</key>
-			<string>Sony RAW File</string>
-			<key>CFBundleTypeRole</key>
-			<string>Viewer</string>
-			<key>LSTypeIsPackage</key>
-			<false/>
-			<key>NSDocumentClass</key>
-			<string>FunHouseDocument</string>
-		</dict>
-		<dict>
-			<key>CFBundleTypeExtensions</key>
-			<array>
-				<string>exr</string>
-			</array>
-			<key>CFBundleTypeName</key>
-			<string>OpenEXR File</string>
-			<key>CFBundleTypeRole</key>
-			<string>Viewer</string>
 			<key>LSTypeIsPackage</key>
 			<false/>
 			<key>NSDocumentClass</key>
@@ -179,11 +68,11 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>2.0</string>
+	<string>2.1</string>
 	<key>CFBundleSignature</key>
 	<string>CIFH</string>
 	<key>CFBundleVersion</key>
-	<string>2.0</string>
+	<string>2.1</string>
 	<key>NSMainNibFile</key>
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>
